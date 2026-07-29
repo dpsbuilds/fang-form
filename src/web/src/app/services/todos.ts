@@ -1,20 +1,14 @@
-import { Service } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Todo } from '../models/todo';
+import { HttpClient } from '@angular/common/http';
 
 @Service()
 export class Todos {
-  todoItems: Array<Todo> = [
-    {
-      id: 0,
-      title: 'groceries',
-      userId: 1,
-      completed: false,
-    },
-    {
-      id: 1,
-      title: 'car wash',
-      userId: 1,
-      completed: false,
-    },
-  ];
+  http = inject(HttpClient);
+  
+  getTodosFromApi() {
+    const url = `https://jsonplaceholder.typicode.com/todos`;
+
+    return this.http.get<Array<Todo>>(url);
+  }
 }
