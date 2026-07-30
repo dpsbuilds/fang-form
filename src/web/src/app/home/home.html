@@ -1,3 +1,18 @@
 <app-greeting [message]="homeMessage()" />
+<h2>Weather Health Check</h2>
+
+@if (!weatherItems().length) {
+  <p style="background-color: darkred; color: white">NO WEATHER</p>
+}
+
+<ul>
+  @for (weather of weatherItems(); track $index) {
+    <li>
+      <app-weather-forecast-item [forecast]="weather" />
+    </li>
+  }
+</ul>
+
+<h2>Other Features</h2>
 <app-counter />
 <input type="text" placeholder="type something" (keyup)="keyUpHandler($event)" />
