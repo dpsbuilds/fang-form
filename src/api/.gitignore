@@ -1,0 +1,33 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core
+artifacts/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Others
+CodeCoverage/
+*.userprefs
