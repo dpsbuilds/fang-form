@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: ./src/api
+      dockerfile: Dockerfile
+    ports:
+      - "5223:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  web:
+    build:
+      context: ./src/web
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
+    develop:
+      watch:
+        - action: sync
+          path: ./src/web
+          target: /app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
