@@ -1,0 +1,11 @@
+<h1>Routines</h1>
+
+@if (!routineList().length) {
+    <p>Loading ...</p>
+}
+
+<ul>
+    @for (routine of routineList(); track routine.id) {
+        <app-routine-item [routine]="routine" />
+    }
+</ul>

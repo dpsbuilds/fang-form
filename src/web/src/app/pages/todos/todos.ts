@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { Todos } from '../services/todos';
-import { Todo } from '../models/todo';
+import { Todos } from '../../services/todos';
+import { Todo } from '../../models/todo';
 import { catchError } from 'rxjs';
-import { TodoItem } from '../components/todo-item/todo-item';
+import { TodoItem } from '../../components/todo-item/todo-item';
 import { FormsModule } from '@angular/forms';
-import { FilterTodosPipe } from '../pipes/filter-todos-pipe';
+import { FilterTodosPipe } from '../../pipes/filter-todos-pipe';
 
 @Component({
   selector: 'app-todos',

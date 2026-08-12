@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WeatherForecastItem } from './weather-forecast-item';
+import { RoutineItem } from './routine-item';
 
-describe('WeatherForecastItem', () => {
-  let component: WeatherForecastItem;
-  let fixture: ComponentFixture<WeatherForecastItem>;
+describe('RoutineItem', () => {
+  let component: RoutineItem;
+  let fixture: ComponentFixture<RoutineItem>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WeatherForecastItem],
+      imports: [RoutineItem],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(WeatherForecastItem);
+    fixture = TestBed.createComponent(RoutineItem);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

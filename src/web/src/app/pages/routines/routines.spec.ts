@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Counter } from './counter';
+import { RoutineManagement } from './routines';
 
-describe('Counter', () => {
-  let component: Counter;
-  let fixture: ComponentFixture<Counter>;
+describe('Routines', () => {
+  let component: RoutineManagement;
+  let fixture: ComponentFixture<RoutineManagement>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Counter],
+      imports: [RoutineManagement],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Counter);
+    fixture = TestBed.createComponent(RoutineManagement);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
