@@ -1,11 +1,35 @@
+using Api.Infra;
+using Api.Services;
+using Api.Services.Interfaces;
+using LinqToDB;
+using LinqToDB.AspNet;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddCors(options => {
-    options.AddPolicy("AllowAngular", policy => {
+// Database
+builder.Services.AddLinqToDBContext<FangFormDb>((provider, options) =>
+{
+    var config = provider.GetRequiredService<IConfiguration>();
+    var connectionString = config.GetConnectionString("DefaultConnection");
+
+    if (string.IsNullOrEmpty(connectionString))
+    {
+        throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+    }
+
+    return options.UsePostgreSQL(connectionString);
+});
+
+// Services
+builder.Services.AddScoped<IRoutineService, RoutineService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod()
@@ -15,13 +39,15 @@ builder.Services.AddCors(options => {
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseCors("AllowAngular");
+
+app.MapControllers();
+
 app.UseHttpsRedirection();
 
 var summaries = new[]
@@ -31,7 +57,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
