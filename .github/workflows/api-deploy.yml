@@ -56,6 +56,18 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Test Role Assume
+        continue-on-error: true
+        run: |
+          # First get short-lived credentials
+          aws sts get-caller-identity
+          
+          # Then try to assume the role
+          aws sts assume-role-with-web-identity \
+            --role-arn "arn:aws:iam::YOUR_ACCOUNT_ID:role/fangform-github-runner" \
+            --role-session-name "test-session" \
+            --web-identity-token "$ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
