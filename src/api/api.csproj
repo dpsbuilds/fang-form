@@ -4,9 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ContainerImageTags>1.0.0;latest</ContainerImageTags>
-    <ContainerRepository>fang-form-api</ContainerRepository>
-    <PublishProfile>DefaultContainer</PublishProfile>
+    <EnableSDKContainerSupport>false</EnableSDKContainerSupport>
   </PropertyGroup>
 
   <ItemGroup>
