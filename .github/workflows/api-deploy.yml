@@ -11,9 +11,9 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: fangform/api
-  ECS_SERVICE: fangform-service
+  ECS_SERVICE: fangform-api-service
   ECS_CLUSTER: fangform-api-cluster
-  ECS_TASK_DEFINITION: deployments/ecs-task-definition.json
+  ECS_TASK_DEFINITION: aws/api-task-definition.json
   CONTAINER_NAME: fangform-api
 
 jobs:
